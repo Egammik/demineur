@@ -1,0 +1,13 @@
+td {
+  color: #f1f1f1;
+}
+
+td.clean {
+  border-color: #242424;
+  background-color: #f1f1f1;
+  color: #242424;
+}
+
+td.fail {
+  color: red;
+}
