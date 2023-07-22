@@ -1,0 +1,32 @@
+{
+  "short_name": "Démineur",
+  "id": "/demineur/",
+  "name": "Démineur",
+  "description": "Jeu du Démineur",
+  "lang": "fr-FR",
+  "icons": [
+    {
+      "src": "morpion64.webp",
+      "type": "image/webp",
+      "sizes": "64x64"
+    },
+    {
+      "src": "morpion192.webp",
+      "type": "image/webp",
+      "sizes": "192x192"
+    },
+    {
+      "src": "morpion512.webp",
+      "type": "image/webp",
+      "sizes": "512x512"
+    },
+    {
+      "src": "morpion.svg",
+      "type": "image/svg",
+      "sizes": "any"
+    }
+  ],
+  "start_url": "/demineur/",
+  "display": "standalone",
+  "orientation": "any"
+}
