@@ -1,0 +1,51 @@
+td {
+  color: #f1f1f1;
+  font-weight: bold;
+}
+
+td.clean {
+  border-color: #242424;
+  background-color: #f1f1f1;
+  color: #242424;
+}
+
+td.fail {
+  color: red;
+}
+
+td img {
+  height: 1rem;
+  color: #ff0505;
+}
+
+td.blue {
+  color: blue;
+}
+
+td.green {
+  color: darkgreen;
+}
+
+td.red {
+  color: red;
+}
+
+td.darkBlue {
+  color: darkblue;
+}
+
+td.darkRed {
+  color: darkred;
+}
+
+td.marine {
+  color: darkcyan;
+}
+
+td.black {
+  color: black;
+}
+
+td.grey {
+  color: grey;
+}
