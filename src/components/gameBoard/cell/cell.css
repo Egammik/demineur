@@ -15,6 +15,7 @@ td.fail {
 
 td img {
   height: 1rem;
+  color: #ff0505;
 }
 
 td.blue {
