@@ -14,14 +14,14 @@ export const _LEVELS = [
   },
   {
     name: 'Dur',
-    lines: 16,
-    columns: 16,
+    lines: 22,
+    columns: 12,
     bombs: 40,
   },
   {
     name: 'Extrême',
-    lines: 30,
-    columns: 16,
+    lines: 40,
+    columns: 12,
     bombs: 99,
   }
 ]
