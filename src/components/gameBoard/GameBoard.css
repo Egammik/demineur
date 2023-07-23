@@ -6,6 +6,24 @@ table.fail {
   box-shadow: 0 0 30px red;
 }
 
+.tablePause{
+  position: relative;
+}
+
+.tablePause::before {
+  content: "PAUSE";
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: #242424;
+  color: #f1f1f1;
+  height: 100%;
+  width: 100%;
+  padding-top: calc(50% - 1rem);
+  z-index: 100;
+  pointer-events: none;
+}
+
 table, td {
   border-collapse: collapse;
   border: 1px solid #242424;
