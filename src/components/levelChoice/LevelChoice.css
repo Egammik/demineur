@@ -22,3 +22,14 @@ h2 {
   background-color: #f1f1f1;
   color: #242424;
 }
+
+@media (prefers-color-scheme: light) {
+  .card {
+    border-color: #242424;
+    color:#242424;
+  }
+  .card:hover {
+    background-color: #242424;
+    color: #f1f1f1;
+  }
+}

@@ -1,9 +1,14 @@
 td {
+  text-align: center;
+  vertical-align: middle;
+  box-shadow: inset 1px 1px 4px #f1f1f1;
+  background-color: #242424;
   color: #f1f1f1;
   font-weight: bold;
 }
 
 td.clean {
+  box-shadow: none;
   border-color: #242424;
   background-color: #f1f1f1;
   color: #242424;
@@ -13,8 +18,15 @@ td.fail {
   color: red;
 }
 
+td.pointer {
+  cursor: pointer;
+}
+
 td img {
+  display: block;
+  margin: auto auto;
   height: 1rem;
+  width: 1rem;
   color: #ff0505;
 }
 
@@ -49,3 +61,17 @@ td.black {
 td.grey {
   color: grey;
 }
+
+/* @media (prefers-color-scheme: light) {
+  td {
+    color: #242424;
+    font-weight: bold;
+  }
+  
+  td.clean {
+    border-color: #f1f1f1;
+    background-color: #242424;
+    color: #f1f1f1;
+  }
+  
+} */
