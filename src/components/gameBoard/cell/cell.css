@@ -1,5 +1,6 @@
 td {
   color: #f1f1f1;
+  font-weight: bold;
 }
 
 td.clean {
@@ -10,4 +11,40 @@ td.clean {
 
 td.fail {
   color: red;
+}
+
+td img {
+  height: 1rem;
+}
+
+td.blue {
+  color: blue;
+}
+
+td.green {
+  color: darkgreen;
+}
+
+td.red {
+  color: red;
+}
+
+td.darkBlue {
+  color: darkblue;
+}
+
+td.darkRed {
+  color: darkred;
+}
+
+td.marine {
+  color: darkcyan;
+}
+
+td.black {
+  color: black;
+}
+
+td.grey {
+  color: grey;
 }

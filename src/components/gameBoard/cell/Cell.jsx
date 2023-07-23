@@ -1,4 +1,6 @@
 import { useContext } from "react";
+import flag from "@assets/flag.svg";
+import mine from "@assets/mine.svg";
 import "./cell.css";
 import Context from "../../../contexts/Context";
 
@@ -15,16 +17,45 @@ const Cell = ({ rowIndex, index }) => {
   if (clean.includes(`${rowId}-${cellId}`)) {
     className += "clean ";
     value = game[rowId][cellId];
+    switch (value) {
+      case 1:
+        className += "blue";
+        break;
+      case 2:
+        className += "green";
+        break;
+      case 3:
+        className += "red";
+        break;
+      case 4:
+        className += "darkBlue";
+        break;
+      case 5:
+        className += "darkRed";
+        break;
+      case 6:
+        className += "marine";
+        break;
+      case 7:
+        className += "black";
+        break;
+      case 8:
+        className += "grey";
+        break;
+      default:
+        null;
+        break;
+    }
   }
 
   if (marked.includes(`${rowId}-${cellId}`)) {
     className += "marked ";
-    value = "?";
+    value = <img src={flag} alt="flag" className="img" />;
   }
 
   if (bomb && game[rowId][cellId] === -1) {
     className += "fail ";
-    value = "X";
+    value = <img src={mine} alt="flag" className="img" />;
   }
 
   const checkAround = (y, x, tmp) => {
