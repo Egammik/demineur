@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import "./GameBoard.css";
 import Timer from "../timer/Timer";
 import { dataGameBoard } from "../../utils/gameBoardUtils";
@@ -13,10 +13,17 @@ import Row from "./row/Row";
 const GameBoard = ({ level }) => {
   const [game, setGame] = useState(useMemo(() => dataGameBoard(level), [level]));
   const [marked, setMarked] = useState([]);
+  const [isPaused, setIsPaused] = useState(false);
+  const [end, setEnd] = useState(false);
   const [clean, setClean] = useState([]);
   const [bomb, setBomb] = useState(null);
 
-  
+  useEffect(()=> {
+    if (bomb || (clean.length + level.bombs ) === (level.columns * level.lines)) {
+      setEnd(true)
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [bomb, clean])
 
 
   let contextValue = {
@@ -24,6 +31,8 @@ const GameBoard = ({ level }) => {
     marked,
     level,
     clean,
+    isPaused,
+    end,
     bomb,
     setGame,
     setMarked,
@@ -33,9 +42,9 @@ const GameBoard = ({ level }) => {
 
   return (
     <Context.Provider value={contextValue}>
-      <Timer />
+      <Timer end={end} isPaused={isPaused} setIsPaused={setIsPaused}/>
       <table className={bomb && "fail"}>
-        <tbody>
+        <tbody className={isPaused ? "tablePause" : ""}>
           {game.map((row, i) => (
             <Row index={i} key={`row-${i}`} />
           ))}

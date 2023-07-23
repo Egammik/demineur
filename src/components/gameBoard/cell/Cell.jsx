@@ -5,11 +5,20 @@ import "./cell.css";
 import Context from "../../../contexts/Context";
 
 const Cell = ({ rowIndex, index }) => {
-  const { game, clean, setClean, level, bomb, setMarked, setBomb, marked } =
-    useContext(Context);
+  const {
+    game,
+    clean,
+    isPaused,
+    end,
+    setClean,
+    level,
+    bomb,
+    setMarked,
+    setBomb,
+    marked,
+  } = useContext(Context);
   const rowId = parseInt(rowIndex);
   const cellId = parseInt(index);
-
   let className = "";
 
   let value = "";
@@ -49,8 +58,12 @@ const Cell = ({ rowIndex, index }) => {
   }
 
   if (marked.includes(`${rowId}-${cellId}`)) {
-    className += "marked ";
-    value = <img src={flag} alt="flag" className="img" />;
+    if (!clean.includes(`${rowId}-${cellId}`)) {
+      className += "marked ";
+      value = <img src={flag} alt="flag" className="img" />;
+    } else {
+      setMarked((p) => p.filter((x) => x !== `${rowId}-${cellId}`));
+    }
   }
 
   if (bomb && game[rowId][cellId] === -1) {
@@ -58,8 +71,8 @@ const Cell = ({ rowIndex, index }) => {
     value = <img src={mine} alt="flag" className="img" />;
   }
 
-  if (!bomb && !clean.includes(`${rowId}-${cellId}`)){
-    className += "pointer "
+  if (!bomb && !clean.includes(`${rowId}-${cellId}`)) {
+    className += "pointer ";
   }
 
   const checkAround = (y, x, tmp) => {
@@ -101,7 +114,7 @@ const Cell = ({ rowIndex, index }) => {
 
   const handleClick = (e) => {
     e.preventDefault();
-    if (bomb || clean.includes(`${rowId}-${cellId}`)) {
+    if (bomb || clean.includes(`${rowId}-${cellId}`) || isPaused || end) {
       return;
     }
     if (game[rowId][cellId] !== -1) {
@@ -118,7 +131,7 @@ const Cell = ({ rowIndex, index }) => {
 
   const handleContextMenu = (e) => {
     e.preventDefault();
-    if (bomb) {
+    if (bomb || clean.includes(`${rowId}-${cellId}`) || isPaused || end) {
       return;
     }
     if (marked.includes(`${rowId}-${cellId}`)) {

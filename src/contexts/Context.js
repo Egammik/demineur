@@ -5,6 +5,8 @@ export default React.createContext({
   level:{},
   marked: [],
   clean: [],
+  isPaused: Boolean,
+  end: Boolean,
   bomb: String,
   setGame: () => {},
   setMarked: () => {},
