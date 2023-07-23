@@ -1,10 +1,30 @@
+table {
+  box-shadow: 0 0 30px lightgreen;
+}
+
+table.fail {
+  box-shadow: 0 0 30px red;
+}
+
 table, td {
   border-collapse: collapse;
-  border: 1px solid #f1f1f1;
+  border: 1px solid #242424;
 }
 
 td {
   width: 2rem;
   height: 2rem;
+  background-color: grey;
 }
 
+@media (prefers-color-scheme: light) {
+  table, td {
+    background-color: grey;
+  }
+  table {
+    box-shadow: 0 0 30px darkgreen;
+  }
+  table.fail {
+    box-shadow: 0 0 30px darkred;
+  }
+}

@@ -58,6 +58,10 @@ const Cell = ({ rowIndex, index }) => {
     value = <img src={mine} alt="flag" className="img" />;
   }
 
+  if (!bomb && !clean.includes(`${rowId}-${cellId}`)){
+    className += "pointer "
+  }
+
   const checkAround = (y, x, tmp) => {
     let voidCell = [];
     for (let j = x - 1; j <= x + 1; j++) {

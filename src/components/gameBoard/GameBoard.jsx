@@ -34,7 +34,7 @@ const GameBoard = ({ level }) => {
   return (
     <Context.Provider value={contextValue}>
       <Timer />
-      <table>
+      <table className={bomb && "fail"}>
         <tbody>
           {game.map((row, i) => (
             <Row index={i} key={`row-${i}`} />
