@@ -7,15 +7,14 @@ import Context from "../../../contexts/Context";
 const Cell = ({ rowIndex, index }) => {
   const {
     game,
-    clean,
-    isPaused,
-    end,
-    setClean,
-    level,
-    bomb,
-    setMarked,
-    setBomb,
     marked,
+    asked,
+    clean,
+    bomb,
+    handleClick,
+    handleContextMenu,
+    setMarked,
+    setAsked,
   } = useContext(Context);
   const rowId = parseInt(rowIndex);
   const cellId = parseInt(index);
@@ -66,6 +65,14 @@ const Cell = ({ rowIndex, index }) => {
     }
   }
 
+  if (asked.includes(`${rowId}-${cellId}`)) {
+    if (!clean.includes(`${rowId}-${cellId}`)) {
+      value = "?";
+    } else {
+      setAsked((p) => p.filter((x) => x !== `${rowId}-${cellId}`));
+    }
+  }
+
   if (bomb && game[rowId][cellId] === -1) {
     className += "fail ";
     value = <img src={mine} alt="flag" className="img" />;
@@ -75,77 +82,11 @@ const Cell = ({ rowIndex, index }) => {
     className += "pointer ";
   }
 
-  const checkAround = (y, x, tmp) => {
-    let voidCell = [];
-    for (let j = x - 1; j <= x + 1; j++) {
-      if (j !== -1 && j !== level.columns) {
-        if (!clean.includes(`${y}-${j}`) && !tmp.includes(`${y}-${j}`)) {
-          tmp.push(`${y}-${j}`);
-          !game[y][j] && voidCell.push({ y: y, x: j });
-        }
-        for (let k = y - 1; k <= y + 1; k++) {
-          if (k !== -1 && k !== level.lines) {
-            if (!clean.includes(`${k}-${j}`) && !tmp.includes(`${k}-${j}`)) {
-              tmp.push(`${k}-${j}`);
-              !game[k][j] && voidCell.push({ y: k, x: j });
-            }
-          }
-        }
-      }
-    }
-    return { tmp, voidCell };
-  };
-
-  const checkCleanBorad = (y, x, tmp) => {
-    let voidCell = [{ y: y, x: x }];
-
-    while (voidCell.length > 0) {
-      let arr = [];
-      for (let i = 0; i < voidCell.length; i++) {
-        let cell = voidCell[i];
-        let result = checkAround(cell.y, cell.x, tmp);
-        tmp = [...result.tmp];
-        arr = [...arr, ...result.voidCell];
-      }
-      voidCell = arr;
-    }
-    setClean((prev) => [...prev, ...tmp]);
-  };
-
-  const handleClick = (e) => {
-    e.preventDefault();
-    if (bomb || clean.includes(`${rowId}-${cellId}`) || isPaused || end) {
-      return;
-    }
-    if (game[rowId][cellId] !== -1) {
-      const cell = `${rowId}-${cellId}`;
-      if (!game[rowId][cellId]) {
-        checkCleanBorad(rowId, cellId, [cell]);
-      } else {
-        setClean((prev) => [...prev, cell]);
-      }
-    } else {
-      setBomb(`${rowId}-${cellId}`);
-    }
-  };
-
-  const handleContextMenu = (e) => {
-    e.preventDefault();
-    if (bomb || clean.includes(`${rowId}-${cellId}`) || isPaused || end) {
-      return;
-    }
-    if (marked.includes(`${rowId}-${cellId}`)) {
-      setMarked(marked.filter((e) => e !== `${rowId}-${cellId}`));
-    } else {
-      setMarked([...marked, `${rowId}-${cellId}`]);
-    }
-  };
-
   return (
     <td
       className={className}
-      onClick={handleClick}
-      onContextMenu={handleContextMenu}
+      onClick={(e) => handleClick(e, rowId, cellId)}
+      onContextMenu={(e) => handleContextMenu(e, rowId, cellId)}
     >
       {value}
     </td>

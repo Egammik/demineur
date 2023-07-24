@@ -41,3 +41,13 @@
   color:  #e42a2a;
   margin-right: 0.5rem;
 }
+.countMine{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.5rem;
+  margin : 0.5rem auto 1rem auto;
+}
+.counterMineSvg {
+  height: 1.5rem;
+}
