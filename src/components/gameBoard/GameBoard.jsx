@@ -1,9 +1,10 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import "./GameBoard.css";
 import Timer from "../timer/Timer";
 import { dataGameBoard, generateBombs } from "../../utils/gameBoardUtils";
 import Context from "../../contexts/Context";
 import Row from "./row/Row";
+import Result from "./result/Result";
 
 /**
  *
@@ -11,9 +12,7 @@ import Row from "./row/Row";
  * @returns
  */
 const GameBoard = ({ level }) => {
-  const [game, setGame] = useState(
-    useMemo(() => dataGameBoard(level), [level])
-  );
+  const [game, setGame] = useState(dataGameBoard(level));
   const [time, setTime] = useState(0);
   const [started, setStarted] = useState(false);
   const [marked, setMarked] = useState([]);
@@ -141,7 +140,18 @@ const GameBoard = ({ level }) => {
 
   return (
     <Context.Provider value={contextValue}>
-      <Timer time={time} isPaused={isPaused} setIsPaused={setIsPaused} marked={marked} level={level} />
+      {!end ? (
+        <Timer
+          time={time}
+          isPaused={isPaused}
+          setIsPaused={setIsPaused}
+          marked={marked}
+          level={level}
+        />
+      ) : (
+        <Result time={time} bomb={bomb} />
+      )}
+
       <table className={bomb && "fail"}>
         <tbody className={isPaused ? "tablePause" : ""}>
           {game.map((row, i) => (
