@@ -1,14 +1,27 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./App.css";
 import GameBoard from "./components/gameBoard/GameBoard";
 import LevelChoice from "./components/levelChoice/LevelChoice";
 
 function App() {
   const [level, setLevel] = useState(null);
+  const [reset, setreset] = useState(null);
 
-  const handleClick = ()=>{
-    setLevel(null)
-  }
+  useEffect(() => {
+    if (reset) {
+      setLevel({ ...reset });
+      setreset(null);
+    }
+  }, [reset, level]);
+
+  const handleClick = () => {
+    setLevel(null);
+  };
+
+  const handleReset = () => {
+    setreset({ ...level });
+    setLevel(null);
+  };
 
   return (
     <>
@@ -16,10 +29,15 @@ function App() {
       {level ? (
         <>
           <GameBoard level={level} />
-          <button onClick={handleClick}>Changer de niveau</button>
+          <div>
+            <button onClick={handleClick}>Changer de niveau</button>
+            <button onClick={handleReset} className="reset">
+              &#10227;
+            </button>
+          </div>
         </>
       ) : (
-        <LevelChoice setLevel={setLevel} />
+        !reset && <LevelChoice setLevel={setLevel} />
       )}
     </>
   );
