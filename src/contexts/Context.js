@@ -2,14 +2,13 @@ import React from "react";
 
 export default React.createContext({
   game: {},
-  level:{},
+  level: {},
   marked: [],
+  asked: [],
   clean: [],
-  isPaused: Boolean,
-  end: Boolean,
   bomb: String,
-  setGame: () => {},
+  handleClick: () => {},
+  handleContextMenu: () => {},
   setMarked: () => {},
-  setClean: () => {},
-  setBomb: ()=>{}
+  setAsked: () => {},
 });

@@ -1,29 +1,12 @@
-import { useEffect, useState } from "react";
 import "./timer.css";
-import pauseSVG from "@assets/pause.svg"
+import pauseSVG from "@assets/pause.svg";
+import mine from "@assets/mine.svg";
 
-const Timer = ({isPaused, setIsPaused, end }) => {
-  const [time, setTime] = useState(0);
-
-  useEffect(() => {
-    let interval = null;
-  
-    if (!end && !isPaused) {
-      interval = setInterval(() => {
-        setTime((time) => time + 10);
-      }, 10);
-    } else {
-      clearInterval(interval);
-    }
-    return () => {
-      clearInterval(interval);
-    };
-  }, [isPaused, end]);
-
+const Timer = ({ time, isPaused, setIsPaused, marked, level }) => {
   const pause = () => {
     setIsPaused((p) => !p);
   };
-  
+
   return (
     <div className="timer">
       <div className="content">
@@ -42,6 +25,10 @@ const Timer = ({isPaused, setIsPaused, end }) => {
         >
           <img src={pauseSVG} alt="pause" />
         </div>
+      </div>
+      <div className="countMine">
+        <img src={mine} alt="mine" className="counterMineSvg" />
+        <span> : {level.bombs - marked.length}</span>
       </div>
     </div>
   );
