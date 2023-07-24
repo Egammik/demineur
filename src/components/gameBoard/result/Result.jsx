@@ -1,4 +1,4 @@
-import "./result.css";
+import "./Result.css";
 
 const Result = ({ time, bomb }) => {
   return (
