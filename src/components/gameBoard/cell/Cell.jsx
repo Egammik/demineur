@@ -10,6 +10,7 @@ const Cell = ({ rowIndex, index }) => {
     marked,
     asked,
     clean,
+    isPaused,
     bomb,
     handleClick,
     handleContextMenu,
@@ -78,7 +79,7 @@ const Cell = ({ rowIndex, index }) => {
     value = <img src={mine} alt="flag" className="img" />;
   }
 
-  if (!bomb && !clean.includes(`${rowId}-${cellId}`)) {
+  if (!bomb && !clean.includes(`${rowId}-${cellId}`) && !isPaused) {
     className += "pointer ";
   }
 

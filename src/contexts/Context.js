@@ -6,6 +6,7 @@ export default React.createContext({
   marked: [],
   asked: [],
   clean: [],
+  isPaused: Boolean,
   bomb: String,
   handleClick: () => {},
   handleContextMenu: () => {},
