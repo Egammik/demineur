@@ -1,35 +1,35 @@
-table {
-  box-shadow: 0 0 30px lightgreen;
-  position: relative;
-  -webkit-transform-style: preserve-3d;
-  transform-style: preserve-3d;
-  -webkit-transition: all .5s linear;
-  transition: transform .5s linear;
+.container {
+  display: grid;
 }
 
-table::after {
-  content: "PAUSE";
+.board {
+  -webkit-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+  -webkit-transition: all 0.5s linear;
+  transition: transform 0.5s linear;
+}
+
+table {
+  box-shadow: 0 0 30px lightgreen;
+}
+
+.front, .back {
+  -webkit-backface-visibility: hidden; /* Safari */
+  backface-visibility: hidden;
+}
+
+.back {
+  box-shadow: 0 0 30px lightgreen;
   position: absolute;
   inset: 0;
   background: #242424;
   color: #f1f1f1;
   padding-top: calc(50% - 1rem);
-  -webkit-transform: rotateY(180deg);
-  -moz-transform: rotateY(180deg);
-  -ms-transform: rotateY(180deg);
-  -o-transform: rotateY(180deg);
-  transform: rotateY(180deg);
-  pointer-events: none;
-  -webkit-backface-visibility: hidden; /* Safari */
-  backface-visibility: hidden;
-}
-
-table.tablePause {
   -webkit-transform: rotateY(-180deg);
   transform: rotateY(-180deg);
 }
 
-table.tablePause::after {
+.board.tablePause {
   -webkit-transform: rotateY(180deg);
   transform: rotateY(180deg);
 }
@@ -38,7 +38,8 @@ table.fail {
   box-shadow: 0 0 30px red;
 }
 
-table, td {
+table,
+td {
   border-collapse: collapse;
   border: 1px solid #242424;
 }
@@ -50,7 +51,8 @@ td {
 }
 
 @media (prefers-color-scheme: light) {
-  table, td {
+  table,
+  td {
     background-color: grey;
   }
   table {
