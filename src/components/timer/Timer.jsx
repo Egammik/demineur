@@ -11,7 +11,7 @@ const Timer = ({ time, isPaused, setIsPaused, marked, level }) => {
     <div className="timer">
       <div className="content">
         <div className="digits">
-          {("0" + Math.floor((time / 60000) % 60)).slice(-2)}:
+          {("0" + Math.floor(time / 60000)).slice(-2)}:
         </div>
         <div className="digits">
           {("0" + Math.floor((time / 1000) % 60)).slice(-2)}.

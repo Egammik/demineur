@@ -131,6 +131,7 @@ const GameBoard = ({ level }) => {
     marked,
     asked,
     clean,
+    isPaused,
     bomb,
     handleClick,
     handleContextMenu,
@@ -152,8 +153,8 @@ const GameBoard = ({ level }) => {
         <Result time={time} bomb={bomb} />
       )}
 
-      <table className={bomb && "fail"}>
-        <tbody className={isPaused ? "tablePause" : ""}>
+      <table className={`board${bomb ? " fail" : ""}${isPaused ? " tablePause" : ""}`}>
+        <tbody>
           {game.map((row, i) => (
             <Row index={i} key={`row-${i}`} />
           ))}
