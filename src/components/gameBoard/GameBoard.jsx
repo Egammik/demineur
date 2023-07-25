@@ -141,25 +141,31 @@ const GameBoard = ({ level }) => {
 
   return (
     <Context.Provider value={contextValue}>
-      {!end ? (
-        <Timer
-          time={time}
-          isPaused={isPaused}
-          setIsPaused={setIsPaused}
-          marked={marked}
-          level={level}
-        />
-      ) : (
-        <Result time={time} bomb={bomb} />
-      )}
-
-      <table className={`board${bomb ? " fail" : ""}${isPaused ? " tablePause" : ""}`}>
-        <tbody>
-          {game.map((row, i) => (
-            <Row index={i} key={`row-${i}`} />
-          ))}
-        </tbody>
-      </table>
+      <div className="container">
+        {!end ? (
+          <Timer
+            time={time}
+            isPaused={isPaused}
+            setIsPaused={setIsPaused}
+            marked={marked}
+            level={level}
+          />
+        ) : (
+          <Result time={time} bomb={bomb} />
+        )}
+        <div className={`board${isPaused ? " tablePause" : ""}`}>
+          <table
+            className={`front ${bomb ? "fail" : ""}${isPaused ? " tablePause" : ""}`}
+          >
+            <tbody>
+              {game.map((row, i) => (
+                <Row index={i} key={`row-${i}`} />
+              ))}
+            </tbody>
+          </table>
+          <div className="back">PAUSE</div>
+        </div>
+      </div>
     </Context.Provider>
   );
 };
