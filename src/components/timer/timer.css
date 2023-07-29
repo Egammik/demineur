@@ -1,19 +1,30 @@
 .content{
   border: 1px solid #242424;
   display: flex;
+  justify-content: space-between;
   background-color: #f1f1f1;
   border-radius: 30px;
+  min-width: 180px;
   margin : 0.5rem auto 1rem auto;
   padding: 0 0 0 1rem;
 }
+
+.digitsContainer {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  color:  #242424;
+  font-size: 1.5rem;
+}
+
 .timer {
   display: flex;
   justify-content: center;
 }
 
 .digits{
-  font-size: 1.5rem;
-  color:  #242424;
+  min-width: 30px;
+  text-align: center;
 }
 
 .pause {

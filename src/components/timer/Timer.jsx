@@ -10,14 +10,18 @@ const Timer = ({ time, isPaused, setIsPaused, marked, level }) => {
   return (
     <div className="timer">
       <div className="content">
-        <div className="digits">
-          {("0" + Math.floor(time / 60000)).slice(-2)}:
-        </div>
-        <div className="digits">
-          {("0" + Math.floor((time / 1000) % 60)).slice(-2)}.
-        </div>
-        <div className="digits mili-sec">
-          {("0" + ((time / 10) % 100)).slice(-2)}
+        <div className="digitsContainer">
+          <div className="digits">
+            {("0" + Math.floor(time / 60000)).slice(-2)}
+          </div>
+          <div>:</div>
+          <div className="digits">
+            {("0" + Math.floor((time / 1000) % 60)).slice(-2)}
+          </div>
+          <div>.</div>
+          <div className="digits mili-sec">
+            {("0" + ((time / 10) % 100)).slice(-2)}
+          </div>
         </div>
         <div
           className={isPaused ? "digits pause" : "digits pause actif"}
